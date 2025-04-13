@@ -20,7 +20,7 @@ export default function Home() {
       <ServicesSection />
       <ProductsSection />
       <CoursesSection />
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
       <FaqSection />
       <ContactSection />
     </>
