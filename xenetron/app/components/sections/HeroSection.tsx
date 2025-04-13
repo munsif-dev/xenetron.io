@@ -44,7 +44,7 @@ export default function HeroSection() {
   const titleWords = "Empowering Digital Transformation Through AI".split(" ");
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden mt-4 pt-20 bg-background">
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden my-4 pt-20 bg-background">
       {/* Particles background */}
       <div
         ref={particlesRef}
@@ -111,7 +111,7 @@ export default function HeroSection() {
         
         {/* Hero graphics */}
         <motion.div
-          className="mt-12 relative max-w-4xl mx-auto"
+          className="my-12 relative max-w-4xl mx-auto"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 1.5 }}
@@ -153,7 +153,7 @@ export default function HeroSection() {
             <p className="text-lg font-bold gradient-text">2.7x Faster</p>
           </div>
           
-          <div className="absolute bottom-3 right-10 bg-background border border-accent/20 rounded-lg p-3 shadow-lg">
+          <div className="absolute -bottom-3 right-10 bg-background border border-accent/20 rounded-lg p-3 shadow-lg">
             <p className="text-xs text-foreground/70">Cost Reduction</p>
             <p className="text-lg font-bold gradient-text">32% Lower</p>
           </div>
@@ -161,7 +161,7 @@ export default function HeroSection() {
         
         {/* Scroll indicator */}
         <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute top-[55%] left-1/2 transform -translate-x-1/2 hidden lg:block"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}

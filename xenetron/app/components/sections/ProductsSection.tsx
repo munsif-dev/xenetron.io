@@ -6,7 +6,7 @@ import { useInView } from "react-intersection-observer";
 import {
   FiCheckCircle,
   FiArrowRight,
-  FiLayers,
+  
   FiCode,
   FiFileText,
   FiTool,
@@ -14,6 +14,8 @@ import {
   FiFeather, 
 } from "react-icons/fi";
 import Link from "next/link";
+import Image from "next/image";
+import autogradepro from "@/public/autogradepro.png";
 
 export default function ProductsSection() {
   const [ref, inView] = useInView({
@@ -30,8 +32,8 @@ export default function ProductsSection() {
       tagline: "AI-Powered Grading Made Simple",
       description:
         "The intelligent grading platform that helps educators automate assessment, provide detailed feedback, and save hours of grading time.",
-      icon: <FiLayers />,
-      color: "from-accent to-purple-500",
+      icon: <Image src={autogradepro} alt="Company Logo" width={30} height={30} />,
+      color: "from-purple-50 to-purple-200",
       coreFeatures: [
         "Automated grading for essays, code, and quizzes",
         "Intelligent plagiarism detection",
@@ -55,8 +57,8 @@ export default function ProductsSection() {
           icon: <FiMonitor />,
         },
       ],
-      demoUrl: "#products",
-      docsUrl: "#products",
+      demoUrl: "https://autogradepro.vercel.app/",
+      docsUrl: "https://autogradepro.vercel.app/",
       ctaText: "Try Free Demo",
       techStack: ["AI/ML", "NLP", "Cloud", "React", "Python"],
       userTypes: ["Educators", "Schools", "EdTech Companies"],

@@ -225,14 +225,14 @@ export default function ContactSection() {
                     <a
                       href="tel:+11234567890"
                       className="text-foreground hover:text-accent transition-colors font-medium"
-                    >
-                      +1 (123) 456-7890
+                    > 
+                      +94 (78)34 68289
                     </a>
                     <p className="text-xs text-foreground/50 mt-1">
                       Monday to Friday, 9AM to 5PM EST
                     </p>
                   </div>
-                </motion.div>
+                </motion.div> 
                 
                 <motion.div 
                   className="flex items-start gap-4 group"
@@ -247,9 +247,9 @@ export default function ContactSection() {
                       Visit Us
                     </h4>
                     <address className="not-italic text-foreground font-medium">
-                      101 Innovation Drive<br />
-                      Tech District, CA 94103<br />
-                      United States
+                      119, Kankeyanodai - 12 <br />
+                      Arayampathy, Batticaloa<br />
+                      Sri Lanka<br />
                     </address>
                     <p className="text-xs text-foreground/50 mt-1">
                       Please schedule an appointment before visiting
@@ -341,11 +341,11 @@ export default function ContactSection() {
                 
                 {/* Map labels */}
                 <div className="absolute bottom-3 left-3 text-xs text-foreground/40 font-medium">
-                  Tech District, CA
+                  Kni, Batticaloa
                 </div>
                 <div className="absolute top-3 right-3 px-2 py-1 bg-background/20 backdrop-blur-sm rounded text-xs text-foreground/70 font-medium">
                   <FiMapPin className="inline mr-1" size={10} />
-                  Xenetron HQ
+                  Xenetron.IO
                 </div>
               </div>
             </div>

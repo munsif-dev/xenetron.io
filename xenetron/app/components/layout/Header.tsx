@@ -50,15 +50,15 @@ export default function Header() {
             transition={{ duration: 0.5 }}
             className="flex items-center gap-2"
           >
-            <div className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-accent">
-              <Image src={logo} alt="Company Logo" width={140} height={140} />
+            <div className="relative h-11 w-11 overflow-hidden rounded-full border-2 border-accent">
+              <Image src={logo} alt="Company Logo" width={110} height={110} />
             </div>
             <span className="text-foreground font-bold text-xl brand-name">Xenetron</span>
           </motion.div>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden  md:flex items-center gap-6">
           {navLinks.map((link, index) => (
             <motion.div
               key={link.name}
@@ -78,7 +78,7 @@ export default function Header() {
         </nav>
 
         {/* CTA Buttons */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-4 pr-2">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -104,7 +104,7 @@ export default function Header() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-foreground focus:outline-none"
+          className="md:hidden pr-4 text-foreground focus:outline-none"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           <span className="sr-only">Open menu</span>
