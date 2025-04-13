@@ -1,27 +1,29 @@
-// components/sections/AboutSection.tsx
 "use client";
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function AboutSection() {
   const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.2,
+    triggerOnce: true, // Changed to true so animations only happen once
+    threshold: 0.1,
+    rootMargin: "-50px 0px",
   });
 
   const stats = [
-    { number: "5+", label: "Years of Innovation" },
-    { number: "500+", label: "Satisfied Clients" },
-    { number: "35+", label: "AI Experts" },
+    { number: "1+", label: "Years of Innovation" },
+    { number: "30+", label: "Satisfied Clients" },
+    { number: "3+", label: "Experts" },
     { number: "99.9%", label: "Uptime Guaranteed" },
   ];
 
   return (
-    <section id="about" className="py-20 bg-background relative overflow-hidden">
-      {/* Background decoration */}
+    <section id="about" className="py-20 bg-background relative overflow-hidden z-fix">
+      {/* Gradient transition from previous section */}
+      <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-tertiary/50 to-transparent pointer-events-none"></div>
+      
+      {/* Background decoration - simplified and optimized */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-accent/5 -skew-x-12 transform origin-top-right"></div>
       
       <div className="container mx-auto px-4 relative z-10">
@@ -32,29 +34,29 @@ export default function AboutSection() {
           {/* Left column - Image */}
           <motion.div
             className="w-full lg:w-1/2"
-            initial={{ opacity: 0, x: -50 }}
-            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, x: -30 }} // Reduced offset for subtler animation
+            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0.3, x: -30 }} // Added partial opacity when not in view
+            transition={{ duration: 0.7 }}
           >
-            <div className="relative rounded-lg overflow-hidden border border-accent/10">
+            <div className="relative rounded-lg overflow-hidden border border-accent/10 scroll-fix">
               <div className="aspect-[4/3] bg-tertiary relative">
                 {/* Abstract representation */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="relative w-full h-full">
-                    {/* Gradient background */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-tertiary via-secondary to-accent/20"></div>
+                    {/* Optimized gradient background */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-tertiary via-secondary to-accent/20 animate-gradient-pulse"></div>
                     
-                    {/* Animated dots grid */}
+                    {/* Simplified animated dots grid */}
                     <div className="absolute inset-0 grid grid-cols-10 grid-rows-8">
-                      {Array.from({ length: 80 }).map((_, i) => (
+                      {Array.from({ length: 40 }).map((_, i) => ( // Reduced number of dots
                         <motion.div
                           key={i}
                           className="flex items-center justify-center"
                           initial={{ opacity: 0.1 }}
                           animate={{ opacity: [0.1, 0.5, 0.1] }}
                           transition={{
-                            duration: 3,
-                            delay: i % 7 * 0.2,
+                            duration: 4,
+                            delay: i % 5 * 0.4, // Adjusted timing
                             repeat: Infinity,
                             repeatType: "reverse",
                           }}
@@ -68,9 +70,9 @@ export default function AboutSection() {
                     <div className="absolute inset-0 flex items-center justify-center">
                       <motion.div
                         className="w-32 h-32 bg-tertiary rounded-full flex items-center justify-center shadow-lg border border-accent/30"
-                        animate={{ scale: [1, 1.05, 1] }}
+                        animate={{ scale: [1, 1.03, 1] }} // Reduced scale change
                         transition={{
-                          duration: 4,
+                          duration: 6,
                           repeat: Infinity,
                           repeatType: "reverse",
                         }}
@@ -79,29 +81,29 @@ export default function AboutSection() {
                       </motion.div>
                     </div>
                     
-                    {/* Connected nodes */}
-                    {[45, 135, 225, 315].map((angle, i) => (
+                    {/* Connected nodes - optimized animations */}
+                    {[45, 135, 225, 315, 405, 495].map((angle, i) => (
                       <motion.div
                         key={i}
                         className="absolute top-1/2 left-1/2 w-16 h-16 -mt-8 -ml-8 bg-secondary/80 rounded-full flex items-center justify-center shadow-lg border border-accent/20"
                         style={{
                           transform: `rotate(${angle}deg) translate(140px) rotate(-${angle}deg)`,
                         }}
-                        animate={{ scale: [1, 1.1, 1] }}
+                        animate={{ scale: [1, 1.05, 1] }}
                         transition={{
-                          duration: 3,
-                          delay: i * 0.5,
+                          duration: 5,
+                          delay: i * 0.7,
                           repeat: Infinity,
                           repeatType: "reverse",
                         }}
                       >
-                        <div className="text-accent text-xl">
-                          {["AI", "SaaS", "Cloud", "Data"][i]}
+                        <div className="text-accent text-4xl">
+                          {["N", "E", "T", "R", "O", "N"][i]}
                         </div>
                       </motion.div>
                     ))}
                     
-                    {/* Connection lines */}
+                    {/* Connection lines - simplified */}
                     <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
                       {[45, 135, 225, 315].map((angle, i) => {
                         const radians = (angle * Math.PI) / 180;
@@ -122,8 +124,8 @@ export default function AboutSection() {
                             initial={{ pathLength: 0 }}
                             animate={{ pathLength: 1 }}
                             transition={{
-                              duration: 2,
-                              delay: i * 0.3,
+                              duration: 1.5,
+                              delay: i * 0.2,
                               ease: "easeInOut",
                             }}
                           />
@@ -135,21 +137,21 @@ export default function AboutSection() {
               </div>
             </div>
             
-            {/* Stats cards */}
+            {/* Stats cards - simplified animations */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
               {stats.map((stat, index) => (
                 <motion.div
                   key={index}
                   className="bg-tertiary p-4 rounded-lg text-center"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 + 0.5 }}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={inView ? { opacity: 1, y: 0 } : { opacity: 0.3, y: 15 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
                 >
                   <motion.p
                     className="text-xl md:text-2xl font-bold gradient-text"
                     initial={{ opacity: 0 }}
-                    animate={inView ? { opacity: 1 } : { opacity: 0 }}
-                    transition={{ duration: 1, delay: index * 0.2 + 1 }}
+                    animate={inView ? { opacity: 1 } : { opacity: 0.5 }}
+                    transition={{ duration: 0.8, delay: index * 0.1 + 0.5 }}
                   >
                     {stat.number}
                   </motion.p>
@@ -162,9 +164,9 @@ export default function AboutSection() {
           {/* Right column - Content */}
           <motion.div
             className="w-full lg:w-1/2"
-            initial={{ opacity: 0, x: 50 }}
-            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, x: 30 }}
+            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0.3, x: 30 }}
+            transition={{ duration: 0.7 }}
           >
             <div className="inline-block px-3 py-1 bg-accent/10 rounded-full text-accent text-sm font-medium mb-4">
               About Xenetron
@@ -185,9 +187,9 @@ export default function AboutSection() {
             
             <div className="mb-8 border-l-2 border-accent/50 pl-4">
               <p className="text-lg italic text-foreground/90">
-                "Our mission is to empower businesses by integrating AI-driven solutions 
+                &quot;Our mission is to empower businesses by integrating AI-driven solutions 
                 that simplify operations, unlock new growth opportunities, and catalyze 
-                digital transformation."
+                digital transformation.&quot;
               </p>
             </div>
             
@@ -204,6 +206,9 @@ export default function AboutSection() {
           </motion.div>
         </motion.div>
       </div>
+      
+      {/* Gradient transition to next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-tertiary/50 to-transparent pointer-events-none"></div>
     </section>
   );
 }

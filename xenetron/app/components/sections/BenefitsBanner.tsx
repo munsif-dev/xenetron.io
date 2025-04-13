@@ -1,4 +1,3 @@
-// components/sections/BenefitsBanner.tsx
 "use client";
 
 import { motion } from "framer-motion";
@@ -7,8 +6,9 @@ import { FiArrowUpRight, FiCpu, FiTrendingUp, FiShield, FiZap } from "react-icon
 
 export default function BenefitsBanner() {
   const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.2,
+    triggerOnce: true, // Changed to true to ensure animations only happen once
+    threshold: 0.1,
+    rootMargin: "-50px 0px", // Added margin to trigger slightly before the element is in view
   });
 
   const benefits = [
@@ -39,23 +39,26 @@ export default function BenefitsBanner() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.15,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 15 }, // Reduced y-offset for subtler animation
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 
   return (
-    <section className="py-12 bg-tertiary">
-      <div className="container mx-auto px-4">
+    <section className="py-12 bg-tertiary relative">
+      {/* Add subtle gradient transition from previous section */}
+      <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-background/80 to-transparent pointer-events-none"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           ref={ref}
           variants={containerVariants}
@@ -67,7 +70,7 @@ export default function BenefitsBanner() {
             <motion.div
               key={index}
               variants={itemVariants}
-              className="bg-secondary rounded-lg p-6 transition-transform duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-accent/10 border border-transparent hover:border-accent/20"
+              className="bg-secondary rounded-lg p-6 transition-transform duration-300 hover:transform hover:translate-y-[-4px] hover:shadow-lg hover:shadow-accent/10 border border-transparent hover:border-accent/20"
             >
               <div className="flex justify-between items-start">
                 <div className="text-accent text-2xl p-2 bg-accent/10 rounded-md">
@@ -86,7 +89,7 @@ export default function BenefitsBanner() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
+          transition={{ delay: 0.6, duration: 0.5 }}
           className="mt-10 text-center"
         >
           <p className="text-foreground/70 max-w-2xl mx-auto">
@@ -97,11 +100,20 @@ export default function BenefitsBanner() {
           <div className="mt-8 flex flex-wrap justify-center gap-8 opacity-60">
             {/* Placeholder logos - in a real implementation, use actual client logos */}
             {[1, 2, 3, 4, 5].map((logo) => (
-              <div key={logo} className="h-8 w-24 bg-foreground/10 rounded-md"></div>
+              <div 
+                key={logo} 
+                className="h-8 w-24 bg-foreground/10 rounded-md"
+                style={{
+                  animation: `pulse 3s ease-in-out ${logo * 0.5}s infinite alternate`
+                }}
+              ></div>
             ))}
           </div>
         </motion.div>
       </div>
+      
+      {/* Add subtle gradient transition to next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background/80 to-transparent pointer-events-none"></div>
     </section>
   );
 }

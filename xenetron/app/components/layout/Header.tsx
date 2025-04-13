@@ -28,10 +28,9 @@ export default function Header() {
   const navLinks = [
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
+    { name: "Products", href: "#products" },
     { name: "Services", href: "#services" },
     { name: "Courses", href: "#courses" },
-    { name: "Pricing", href: "#pricing" },
-    { name: "Blog", href: "#blog" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -51,14 +50,10 @@ export default function Header() {
             transition={{ duration: 0.5 }}
             className="flex items-center gap-2"
           >
-            <div className="relative h-10 w-10 overflow-hidden">
-              <div className="absolute inset-0 bg-accent rounded-md">
-                <div className="absolute inset-1 bg-background rounded-lg flex items-center justify-center">
-                  <Image src={logo} alt="Company Logo" width={100} height={100} />
-                </div>
-              </div>
+            <div className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-accent">
+              <Image src={logo} alt="Company Logo" width={140} height={140} />
             </div>
-            <span className="text-foreground font-bold text-xl">Xenetron</span>
+            <span className="text-foreground font-bold text-xl brand-name">Xenetron</span>
           </motion.div>
         </Link>
 
@@ -73,7 +68,7 @@ export default function Header() {
             >
               <Link
                 href={link.href}
-                className="text-foreground/80 hover:text-accent transition-colors relative group"
+                className="text-foreground/80 hover:text-accent transition-colors relative group tracking-wide"
               >
                 {link.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
@@ -91,7 +86,7 @@ export default function Header() {
           >
             <Link
               href="#contact"
-              className="btn btn-secondary text-sm px-4 py-2"
+              className="btn btn-secondary text-sm px-4 py-2 tracking-wide"
             >
               Book a Demo
             </Link>
@@ -101,7 +96,7 @@ export default function Header() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <Link href="#pricing" className="btn btn-primary text-sm px-4 py-2">
+            <Link href="#pricing" className="btn btn-primary text-sm px-4 py-2 tracking-wide">
               Get Started
             </Link>
           </motion.div>
@@ -154,7 +149,7 @@ export default function Header() {
               >
                 <Link
                   href={link.href}
-                  className="text-foreground/80 hover:text-accent transition-colors block py-2"
+                  className="text-foreground/80 hover:text-accent transition-colors block py-2 tracking-wide"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
@@ -164,14 +159,14 @@ export default function Header() {
             <div className="flex flex-col gap-3 mt-4">
               <Link
                 href="#contact"
-                className="btn btn-secondary text-sm"
+                className="btn btn-secondary text-sm tracking-wide"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Book a Demo
               </Link>
               <Link
                 href="#pricing"
-                className="btn btn-primary text-sm"
+                className="btn btn-primary text-sm tracking-wide"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Get Started

@@ -1,4 +1,3 @@
-// components/sections/ServicesSection.tsx
 "use client";
 
 import { useState } from "react";
@@ -9,7 +8,7 @@ import Link from "next/link";
 
 export default function ServicesSection() {
   const [ref, inView] = useInView({
-    triggerOnce: false,
+    triggerOnce: true, // Changed to true so animations only happen once
     threshold: 0.1,
   });
 
@@ -54,33 +53,37 @@ export default function ServicesSection() {
     },
   ];
 
+  // Simplified animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.1, // Reduced stagger timing
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 15 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 
   return (
-    <section id="services" className="py-20 bg-tertiary">
-      <div className="container mx-auto px-4">
+    <section id="services" className="py-20 bg-tertiary relative z-fix">
+      {/* Background gradient for smoother transition */}
+      <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-background/50 to-transparent pointer-events-none"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.7 }}
           className="text-center mb-12"
         >
           <div className="inline-block px-3 py-1 bg-accent/10 rounded-full text-accent text-sm font-medium mb-4">
@@ -143,12 +146,12 @@ export default function ServicesSection() {
             ))}
           </motion.div>
 
-          {/* Service details */}
+          {/* Service details - improved animations and transitions */}
           <motion.div
-            className="lg:col-span-8 bg-secondary rounded-lg p-8"
-            initial={{ opacity: 0, x: 30 }}
-            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            className="lg:col-span-8 bg-secondary rounded-lg p-8 shadow-md border border-accent/10"
+            initial={{ opacity: 0, x: 20 }}
+            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
           >
             <div className="flex items-center gap-4 mb-6">
               <div className="p-3 bg-accent/10 text-accent rounded-md">
@@ -159,37 +162,45 @@ export default function ServicesSection() {
               </h3>
             </div>
 
-            <p className="text-foreground/80 mb-8">
-              {services[activeService].description}
-            </p>
+            <motion.div
+              key={`desc-${activeService}`} // Key for animation on service change
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4 }}
+              className="scroll-fix"
+            >
+              <p className="text-foreground/80 mb-8">
+                {services[activeService].description}
+              </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              {services[activeService].features.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  className="flex items-start gap-3"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                >
-                  <div className="w-5 h-5 rounded-full bg-accent/20 text-accent flex items-center justify-center mt-0.5">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-3 w-3"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <p className="text-foreground/90">{feature}</p>
-                </motion.div>
-              ))}
-            </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                {services[activeService].features.map((feature, index) => (
+                  <motion.div
+                    key={`${activeService}-feature-${index}`}
+                    className="flex items-start gap-3"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                  >
+                    <div className="w-5 h-5 rounded-full bg-accent/20 text-accent flex items-center justify-center mt-0.5">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-3 w-3"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <p className="text-foreground/90">{feature}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
 
             <div className="flex justify-between items-center pt-4 border-t border-accent/10">
               <p className="text-sm text-foreground/60">
@@ -205,6 +216,9 @@ export default function ServicesSection() {
           </motion.div>
         </div>
       </div>
+      
+      {/* Gradient transition to next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background/50 to-transparent pointer-events-none"></div>
     </section>
   );
 }

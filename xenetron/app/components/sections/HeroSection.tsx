@@ -44,7 +44,7 @@ export default function HeroSection() {
   const titleWords = "Empowering Digital Transformation Through AI".split(" ");
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-20 bg-background">
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden mt-4 pt-20 bg-background">
       {/* Particles background */}
       <div
         ref={particlesRef}
@@ -59,7 +59,7 @@ export default function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
-            <p className="text-accent font-medium mb-4">XENETRON</p>
+            <p className="text-accent font-medium mb-4">We are</p>
           </motion.div>
           
           <h1 className="mb-6">
@@ -148,12 +148,12 @@ export default function HeroSection() {
           </div>
           
           {/* Stats indicators */}
-          <div className="absolute -bottom-5 left-10 bg-background border border-accent/20 rounded-lg p-3 shadow-lg">
+          <div className="absolute -top-3 left-10 bg-background border border-accent/20 rounded-lg p-3 shadow-lg">
             <p className="text-xs text-foreground/70">Processing Speed</p>
             <p className="text-lg font-bold gradient-text">2.7x Faster</p>
           </div>
           
-          <div className="absolute -bottom-5 right-10 bg-background border border-accent/20 rounded-lg p-3 shadow-lg">
+          <div className="absolute bottom-3 right-10 bg-background border border-accent/20 rounded-lg p-3 shadow-lg">
             <p className="text-xs text-foreground/70">Cost Reduction</p>
             <p className="text-lg font-bold gradient-text">32% Lower</p>
           </div>
