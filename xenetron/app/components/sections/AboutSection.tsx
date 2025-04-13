@@ -98,7 +98,7 @@ export default function AboutSection() {
                         }}
                       >
                         <div className="text-accent text-4xl">
-                          {["N", "E", "T", "R", "O", "N"][i]}
+                          {["N", "E", "T", "R", "O", "TN"][i]}
                         </div>
                       </motion.div>
                     ))}
