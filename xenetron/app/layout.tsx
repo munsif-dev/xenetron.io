@@ -19,7 +19,7 @@ const audiowide = Audiowide({
 });
 
 export const metadata: Metadata = {
-  title: "Xenetron - Empowering Digital Transformation Through AI",
+  title: "Xenetron Technologies",
   description: "Xenetron is a forward-thinking software technology service provider specializing in AI-powered SaaS applications that drive digital transformation.",
   keywords: "AI, Digital Transformation, SaaS, Software Development, AI Education",
 };
